@@ -12,22 +12,37 @@
 
 
 function startGame() {
-    start 버튼 제거
-    성공 flag 및 라운드 초기화
+    // start 버튼 제거
+    // 성공 flag 및 라운드 초기화
+    // round 이길 경우 시간 줄여가면서 반복 재실행
+    const timelimit = {"now":5000,"next":5000};
+    let round = 1;
 
-    setInterval(startGame, 5000);
+    setInterval(function(){
+        timelimit.now = timelimit.next;
+        let result = playRound(round, timelimit.now);
+        if(result){
+            round += 1;
+            timelimit.next = 0.9*timelimit.now;
+        }else{
+            gameOver();
+            // clearInterval
+        }
+    }, timelimit.now);
 
-    if(성공 flag) {
-        playRound(round, stagetimelimit);
-    }
+}
+
+function gameOver(){
+
 }
 
 const handGestureList = ["rock", "paper", "scissors"];
 
-
 function playRound(round, timelimit) {
     let player1_handGesture = null;
     let player2_handGesture = null;
+    let player1_choice = null;
+    let player2_choice = null;
 
     player1_handGesture = handGestureList[Math.floor(Math.random() * options.length)];
     player2_handGesture = handGestureList[Math.floor(Math.random() * options.length)];
@@ -37,10 +52,12 @@ function playRound(round, timelimit) {
     playerSelect("player1",timelimit);
     playerSelect("player2",timelimit);
 
-    playerSelect();
-    winnerCalc();
-    resultAnimation();
-    성공 flag 업데이트    
+    RockScissorsPaperJudge(player1_handGesture, player2_handGesture);
+    resultJudge(RockScissorsPaperWinner, player1_choice, player2_choice);
+
+    resultAnimation(an);
+    
+    return result
 }
 
 function drawHand(player1_handGesture, player2_handGesture, drawTime){
@@ -55,6 +72,18 @@ function playerSelect(player, timelimit){
         // 버튼 비활성화 
 
     },timelimit);
+}
+
+function RockScissorsPaperJudge(player1_handGesture, player2_handGesture){
+
+}
+
+function resultJudge(RockScissorsPaperWinner, player1_choice, player2_choice){
+
+}
+
+function resultAnimation(animationType){
+
 }
 
 
