@@ -22,22 +22,39 @@ function startGame() {
     }
 }
 
+const handGestureList = ["rock", "paper", "scissors"];
+
 
 function playRound(round, timelimit) {
     let player1_handGesture = null;
     let player2_handGesture = null;
 
-    player1_handGesture = rand();
+    player1_handGesture = handGestureList[Math.floor(Math.random() * options.length)];
+    player2_handGesture = handGestureList[Math.floor(Math.random() * options.length)];
 
-    randomRSP(playTime);
+    drawHand(player1_handGesture,player2_handGesture,0.2*timelimit);
+
+    playerSelect("player1",timelimit);
+    playerSelect("player2",timelimit);
+
     playerSelect();
     winnerCalc();
     resultAnimation();
     성공 flag 업데이트    
 }
 
-function drawHand(direction, handGesture){
+function drawHand(player1_handGesture, player2_handGesture, drawTime){
+    // player 방향에 맞춰 가운데에 drawTime 안에 가위바위보 그림을 그려준다.
+}
 
+function playerSelect(player, timelimit){
+    // eventlistener를 통해 버튼 동작을 감지하고 누르거나 timelimit이 지나면 버튼을 비활성화 시킨다. 
+
+    setInterval(function(){
+        // removeEventListener
+        // 버튼 비활성화 
+
+    },timelimit);
 }
 
 
