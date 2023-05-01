@@ -15,7 +15,6 @@ function startGame() {
     start 버튼 제거
     성공 flag 및 라운드 초기화
 
-    
     setInterval(startGame, 5000);
 
     if(성공 flag) {
@@ -25,12 +24,22 @@ function startGame() {
 
 
 function playRound(round, timelimit) {
+    let player1_handGesture = null;
+    let player2_handGesture = null;
+
+    player1_handGesture = rand();
+
     randomRSP(playTime);
     playerSelect();
     winnerCalc();
     resultAnimation();
     성공 flag 업데이트    
 }
+
+function drawHand(direction, handGesture){
+
+}
+
 
 
 const startGameButton = document.querySelector('.start-game');
