@@ -15,13 +15,16 @@ function startGame() {
     // start 버튼 제거
     // 성공 flag 및 라운드 초기화
     // round 이길 경우 시간 줄여가면서 반복 재실행
-    const timelimit = {"now":5000,"next":5000};
+    const timelimit = {"now":3000,"next":2700};
     let round = 1;
+    let result = playRound(round, timelimit.now);
+
+    if(result){round +=1}
 
     setInterval(function(){
         timelimit.now = timelimit.next;
-        let result = playRound(round, timelimit.now);
         if(result){
+            result = playRound(round, timelimit.now);
             round += 1;
             timelimit.next = 0.9*timelimit.now;
         }else{
@@ -37,6 +40,7 @@ function gameOver(){
 }
 
 const handGestureList = ["rock", "paper", "scissors"];
+const handGestureImgPath = {"rock": './lib/images/rock.png', "paper":'./lib/images/paper.png', "scissors":'./lib/images/scissors.png'};
 
 function playRound(round, timelimit) {
     let player1_handGesture = null;
@@ -44,8 +48,8 @@ function playRound(round, timelimit) {
     let player1_choice = null;
     let player2_choice = null;
 
-    player1_handGesture = handGestureList[Math.floor(Math.random() * options.length)];
-    player2_handGesture = handGestureList[Math.floor(Math.random() * options.length)];
+    player1_handGesture = handGestureList[Math.floor(Math.random() * handGestureList.length)];
+    player2_handGesture = handGestureList[Math.floor(Math.random() * handGestureList.length)];
 
     drawHand(player1_handGesture,player2_handGesture,0.2*timelimit);
 
@@ -53,15 +57,28 @@ function playRound(round, timelimit) {
     playerSelect("player2",timelimit);
 
     RockScissorsPaperJudge(player1_handGesture, player2_handGesture);
-    resultJudge(RockScissorsPaperWinner, player1_choice, player2_choice);
+    resultJudge('temp', player1_choice, player2_choice);
 
-    resultAnimation(an);
+    resultAnimation('temp');
     
+    // 임시 코드
+    let result = 1;
     return result
 }
 
 function drawHand(player1_handGesture, player2_handGesture, drawTime){
     // player 방향에 맞춰 가운데에 drawTime 안에 가위바위보 그림을 그려준다.
+    const player1_hand = document.querySelector('.player1_hand');
+    const player2_hand = document.querySelector('.player2_hand');
+
+    player1_hand.style.display = 'block'; 
+    player1_hand.style.backgroundImage = `url(${handGestureImgPath[player1_handGesture]})`;
+    // player1_hand.style.transition = `transform ${drawTime*0.001}s ease`;
+    // player1_hand.style.transform = 'translate3d(0, 20vh , 0)';
+
+    player2_hand.style.display = 'block'; 
+    player2_hand.style.backgroundImage = `url(${handGestureImgPath[player2_handGesture]})`;
+
 }
 
 function playerSelect(player, timelimit){
