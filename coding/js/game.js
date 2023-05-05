@@ -74,6 +74,13 @@ function drawHand(player1_handGesture, player2_handGesture, drawTime){
     player1_hand.style.display = 'block'; 
     player1_hand.style.backgroundImage = `url(${handGestureImgPath[player1_handGesture]})`;
     // player1_hand.style.transition = `transform ${drawTime*0.001}s ease`;
+    // player1_hand.style.transform = 'rotate(180deg) translateY(200px)';
+    player1_hand.style.top = 0;
+    setTimeout(() => {
+            player1_hand.style.top = '20vh';
+        // player1_hand.style.transform = 'rotate(180deg) translateY(800px)';
+    }, 400)
+
     // player1_hand.style.transform = 'translate3d(0, 20vh , 0)';
 
     player2_hand.style.display = 'block'; 
