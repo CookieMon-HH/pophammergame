@@ -1,4 +1,5 @@
 .game_app {
+	position: relative;
 	width: 100vw;
 	height: 100vh;
 	display: flex;
@@ -43,14 +44,17 @@
 
 .player1_hand{
 	display:none;
-	position: fixed;
+	position: absolute;
+	/* position: fixed; */
 	width: 50vw;
 	height: 30vh;
+	top: 0;
 	left: 25vw;
-	top: 20vh;
 	z-index: 1;
 	background-size: cover;
 	transform: rotate(180deg);
+	transition: top 8s ease-out;
+	z-index: -10;
 }
 .player2_hand{
 	display:none;
