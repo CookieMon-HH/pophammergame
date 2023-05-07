@@ -19,6 +19,9 @@ const resultImgPath = {"playerCorrect": './lib/images/Correct.png', "playerWrong
                     "player1Win": './lib/images/player1win.png', "player2Win":'./lib/images/player2win.png'};
 let startModal = document.querySelector('.startModal');
 let endModal = document.querySelector('.endModal');
+let startGameButton = document.querySelector('.start_game');
+let restart = document.querySelector('.restart');
+let game_Result = document.querySelector('.game_Result');
 
 function startGame() {
     // start 버튼 제거
@@ -28,7 +31,7 @@ function startGame() {
     //이전 게임 애니메이션 리셋 필요
     startModal.style.display = 'none'
 
-    const timelimit = {"now":3000,"next":2700};
+    const timelimit = {"now":5000,"next":4750};
 
     let round = 1;
     let intervalId = null;
@@ -58,7 +61,6 @@ function startGame() {
 }
 
 function gameEnd(roundResult){
-    const game_Result = document.querySelector('.game_Result');
     console.log('game End In / round result :',roundResult["roundResult"]);
     
     // game_Result.style.display = 'block'; 
@@ -107,8 +109,8 @@ async function playRound(round, timelimit) {
         roundResult = resultJudge(RockScissorsPaperResult, player1_choice, player2_choice);
         console.log('player choice : ', player1_choice, player2_choice);
         await resultAnimation(player1_choice, player2_choice, roundResult, timeline['roundEnd']);
-        return resolve(roundResult)
-    }, timeline['selectEnd'])
+        resolve(roundResult);
+    }, timeline['selectEnd']);
     });
 }
 
@@ -406,8 +408,14 @@ function resetResultAnimation(){
     console.log('resetResultAnimation');
 }
 
-
-const startGameButton = document.querySelector('.start_game');
 startGameButton.addEventListener('click', function() {
+    startGame();
+});
+
+restart.addEventListener('click', function() {    
+    endModal.style.display = 'none';
+    game_Result.style.display = 'none'
+    game_Result.style.removeProperty('backgroundImage')
+
     startGame();
 });

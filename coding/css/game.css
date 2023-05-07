@@ -7,6 +7,10 @@
 	justify-content: center;
 	align-items: center;
 	font-size: 40px;
+	background-image: url('./../../lib/images/gameBackground.png');
+	background-size: 80% auto;
+	background-position: center center;
+	background-repeat: no-repeat;
 }
 
 .player1_button {
@@ -27,7 +31,12 @@
 	gap: 10px;
 	font-size: 40px;
 	align-self: stretch;
-	z-index: 10;
+	z-index: 5;
+	background-image: url('./../../lib/images/pophammer.png');
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transform: rotate(180deg);
 }
 .player1_button .player1_lose{
 	width: 50vw;
@@ -39,7 +48,12 @@
 	gap: 10px;
 	font-size: 40px;
 	align-self: stretch;
-	z-index: 10;
+	z-index: 5;
+	background-image: url('./../../lib/images/yangspot.png');
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transform: rotate(180deg);
 }
 
 .player1_hand{
@@ -64,28 +78,33 @@
 	background-size: cover;
 }
 
+@keyframes selectResultAnimation {
+	from {background-position-x: 0;}
+	to {background-position-x: -270vh;}
+}
+
 .player1_selectResult{
 	display:none;
 	position: fixed;
-	width: 20vh;
-	height: 20vh;
-	top: 25vh;
-	left: 30vw;
+	width: 30vh;
+	height: 30vh;
+	top: 20vh;
+	left: 25vw;
 	z-index: 10;
-	background-size: cover;
-	background-position: center center;
 	transform: rotate(180deg);
+	background-size: cover;
+	animation: selectResultAnimation 0.2s 1 steps(9) forwards;
 }
 .player2_selectResult{
 	display:none;
 	position: fixed;
-	width: 20vh;
-	height: 20vh;
-	top: 50vh;
-	left: 30vw;
+	width: 30vh;
+	height: 30vh;
+	top: 40vh;
+	left: 25vw;
 	z-index: 10;
 	background-size: cover;
-	background-position: center center;
+	animation: selectResultAnimation 0.2s 1 steps(9) forwards;
 }
 
 .player1_Result{
@@ -98,8 +117,10 @@
 	z-index: 10;
 	background-size: cover;
 	background-position: center center;
-	transform: rotate(180deg);
 }
+
+
+
 .player2_Result{
 	display:none;
 	position: fixed;
@@ -139,7 +160,11 @@
 	gap: 10px;
 	font-size: 40px;
 	align-self: stretch;
-	z-index: 10;
+	z-index: 5;
+	background-image: url('./../../lib/images/pophammer.png');
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
 }
 .player2_button .player2_lose{
 	width: 50vw;
@@ -151,7 +176,11 @@
 	gap: 10px;
 	font-size: 40px;
 	align-self: stretch;
-	z-index: 10;
+	z-index: 5;
+	background-image: url('./../../lib/images/yangspot.png');
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
 }
 
 .startModal{
