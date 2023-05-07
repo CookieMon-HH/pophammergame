@@ -76,7 +76,7 @@ function gameEnd(roundResult){
 }
 
 async function playRound(round, timelimit) {
-    return new Promise((resolve, reject)=> {
+    return new Promise(async(resolve, reject)=> {
     console.log('round Start :',round,'  timelimit :', timelimit);
     let player1_handGesture = null;
     let player2_handGesture = null;
@@ -105,6 +105,20 @@ async function playRound(round, timelimit) {
         player2_choice = result;
     });
     // console.log('player choice : ', player1_choice, player2_choice);
+
+//     async function selectEndAction(){
+//         setTimeout(()=> {
+//             roundResult = resultJudge(RockScissorsPaperResult, player1_choice, player2_choice);
+//             console.log('player choice : ', player1_choice, player2_choice);
+//         }, timeline['selectEnd']);
+//     }
+
+//     await selectEndAction();
+//     await resultAnimation(player1_choice, player2_choice, roundResult, timeline['roundEnd']);
+//     resolve(roundResult);
+//     })
+// }
+
     setTimeout(async()=> {
         roundResult = resultJudge(RockScissorsPaperResult, player1_choice, player2_choice);
         console.log('player choice : ', player1_choice, player2_choice);
@@ -413,9 +427,10 @@ startGameButton.addEventListener('click', function() {
 });
 
 restart.addEventListener('click', function() {    
-    endModal.style.display = 'none';
-    game_Result.style.display = 'none'
-    game_Result.style.removeProperty('backgroundImage')
+    window.location.reload();
+    // endModal.style.display = 'none';
+    // game_Result.style.display = 'none'
+    // game_Result.style.removeProperty('backgroundImage')
 
-    startGame();
+    // startGame();
 });
